@@ -4,6 +4,7 @@ FROM centos:7
 # DEFINE sapcc and jvm version
 ################################################################
 ARG SAPCC_VERSION=2.14.0.1
+ARG SAPCC_VERSION_AT_ARCHIVE=2.14.0-8
 ARG SAPJVM_VERSION=8.1.084
 
 ################################################################
@@ -35,7 +36,7 @@ RUN wget --no-check-certificate --no-cookies --header "Cookie: eula_3_1_agreed=t
     wget --no-check-certificate --no-cookies --header "Cookie: eula_3_1_agreed=tools.hana.ondemand.com/developer-license-3_1.txt; path=/;" -S https://tools.hana.ondemand.com/additional/sapjvm-$SAPJVM_VERSION-linux-x64.rpm && \
     unzip sapcc-$SAPCC_VERSION-linux-x64.zip && \
     rpm -i sapjvm-$SAPJVM_VERSION-linux-x64.rpm && \
-		rpm -i com.sap.scc-ui-${SAPCC_VERSION}*.x86_64.rpm
+		rpm -i com.sap.scc-ui-${SAPCC_VERSION_AT_ARCHIVE}.x86_64.rpm 
 
 # set JAVA_HOME because this is needed by go.sh below, athers are calulated
 ENV JAVA_HOME=/opt/sapjvm_8/
